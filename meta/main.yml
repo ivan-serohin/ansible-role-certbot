@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Ivan Serohin
+  license: license Apache-2.0
+  role_name: certbot
+  namespace: johnpion
+  description: install certbon
+  min_ansible_version: '2.9'
+
+  platforms:
+    - name: Debian
+      versions:
+        - wheezy
+        - stretch
+        - buster
+        - bullseye

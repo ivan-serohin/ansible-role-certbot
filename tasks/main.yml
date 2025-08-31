@@ -1,0 +1,20 @@
+- name: Install certbot and plugin
+  ansible.builtin.include_tasks: "{{ certbot_type }}.yml"
+
+- name: Set permissions
+  ansible.builtin.file:
+    path: "/etc/letsencrypt/{{ item }}"
+    group: www-data
+    recurse: true
+    mode: g+rx
+  with_items:
+    - archive
+    - live
+
+- name: Add certbot renew to cron
+  ansible.builtin.cron:
+    name: certbot renew
+    hour: '01'
+    minute: '23'
+    job: certbot renew
+  when: certbot is defined
